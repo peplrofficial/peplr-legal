@@ -3,52 +3,399 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>PEPLR — Legal</title>
+<title>PEPLR — Miami, but you actually go out</title>
+<meta name="description" content="PEPLR is where Miami makes plans. Standing plans that repeat, link ups you can join, and what's happening right now. Join the waitlist — first 25 get beta access.">
+<meta property="og:title" content="PEPLR — Miami, but you actually go out">
+<meta property="og:description" content="Standing plans that repeat every week. Link ups you can ask to join. Live buzz from the city. First 25 get beta access.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#161218">
 <style>
-  :root{--bg:#161218;--sf:#1E1824;--bd:#2A2232;--tx:#EDE7F0;--t2:#A79DAE;--ac:#FF6B4A}
-  *{box-sizing:border-box}
-  body{margin:0;background:var(--bg);color:var(--tx);min-height:100vh;
-       display:flex;align-items:center;justify-content:center;
-       font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
-       padding:32px 20px}
-  main{max-width:440px;width:100%}
-  .mark{width:56px;height:56px;border-radius:16px;
-        background:linear-gradient(135deg,#FF6B4A,#F5A623);
-        display:flex;align-items:center;justify-content:center;
-        font-size:24px;font-weight:900;color:#1A0F0A;margin-bottom:20px}
-  h1{font-size:26px;letter-spacing:-.5px;margin:0 0 6px}
-  p.sub{color:var(--t2);font-size:14px;margin:0 0 28px}
-  a.card{display:block;background:var(--sf);border:1px solid var(--bd);
-         border-radius:14px;padding:16px 18px;margin-bottom:10px;
-         text-decoration:none;color:var(--tx);transition:border-color .15s}
-  a.card:hover{border-color:var(--ac)}
-  a.card strong{display:block;font-size:15px;margin-bottom:2px}
-  a.card span{color:var(--t2);font-size:13px}
-  footer{margin-top:28px;color:var(--t2);font-size:12px}
-  footer a{color:var(--ac)}
+  :root{
+    --bg:#161218; --sf:#1E1824; --sf2:#261F2E; --bd:#2A2232;
+    --tx:#FFFFFF; --t2:#C4BACC; --t3:#8A7A96;
+    --ac:#FF6B4A; --go:#F5A623; --on-ac:#1A0F0A; --ok:#27AE60;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--bg);color:var(--tx);
+    font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,sans-serif;
+    -webkit-font-smoothing:antialiased;overflow-x:hidden;
+  }
+  .wrap{max-width:680px;margin:0 auto;padding:0 22px}
+
+  /* ── hero ── */
+  header{padding:64px 0 8px;text-align:center;position:relative}
+  .glow{
+    position:absolute;top:-140px;left:50%;transform:translateX(-50%);
+    width:520px;height:340px;pointer-events:none;
+    background:radial-gradient(ellipse at center,rgba(255,107,74,.22),transparent 68%);
+    filter:blur(14px);
+  }
+  .mark{
+    width:70px;height:70px;border-radius:22px;margin:0 auto 22px;
+    background:linear-gradient(135deg,var(--ac),var(--go));
+    display:flex;align-items:center;justify-content:center;
+    font-size:30px;font-weight:900;color:var(--on-ac);
+    box-shadow:0 14px 40px rgba(255,107,74,.3);position:relative;
+  }
+  h1{
+    font-size:clamp(36px,8vw,54px);line-height:1.04;letter-spacing:-2px;
+    font-weight:900;margin-bottom:16px;position:relative;
+  }
+  h1 em{
+    font-style:normal;
+    background:linear-gradient(135deg,var(--ac),var(--go));
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .lede{font-size:17px;color:var(--t2);max-width:440px;margin:0 auto;position:relative}
+
+  /* ── seats ── */
+  .seats{
+    display:inline-flex;align-items:center;gap:8px;margin-top:24px;
+    background:rgba(245,166,35,.1);border:1px solid rgba(245,166,35,.32);
+    border-radius:999px;padding:7px 15px;font-size:13px;font-weight:700;color:var(--go);
+  }
+  .pulse{width:7px;height:7px;border-radius:50%;background:var(--go);animation:p 2s infinite}
+  @keyframes p{0%,100%{opacity:1}50%{opacity:.25}}
+
+  /* ── form ── */
+  .signup{margin:32px auto 0;max-width:430px}
+  .row{display:flex;gap:8px}
+  input[type=email]{
+    flex:1;min-width:0;background:var(--sf);border:1px solid var(--bd);
+    border-radius:14px;padding:15px 16px;color:var(--tx);
+    font-size:16px;font-family:inherit;outline:none;transition:border-color .15s;
+  }
+  input[type=email]:focus{border-color:var(--ac)}
+  input[type=email]::placeholder{color:var(--t3)}
+  button{
+    background:var(--ac);color:var(--on-ac);border:none;border-radius:14px;
+    padding:15px 22px;font-size:15px;font-weight:800;font-family:inherit;
+    cursor:pointer;white-space:nowrap;transition:transform .12s,opacity .12s;
+  }
+  button:hover{transform:translateY(-1px)}
+  button:active{transform:translateY(0)}
+  button:disabled{opacity:.55;cursor:default;transform:none}
+  .fine{font-size:12px;color:var(--t3);text-align:center;margin-top:11px}
+
+  .result{
+    display:none;margin-top:16px;padding:18px 20px;border-radius:16px;
+    background:var(--sf);border:1px solid var(--bd);text-align:center;
+  }
+  .result.show{display:block;animation:in .35s ease}
+  @keyframes in{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+  .result.win{border-color:rgba(39,174,96,.45);background:rgba(39,174,96,.08)}
+  .result.err{border-color:rgba(231,76,60,.4);background:rgba(231,76,60,.07)}
+  .result h3{font-size:17px;margin-bottom:6px}
+  .result p{font-size:13.5px;color:var(--t2);line-height:1.55}
+  .badge{
+    display:inline-block;margin-bottom:9px;padding:5px 12px;border-radius:999px;
+    font-size:11px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;
+    background:var(--ok);color:#04140a;
+  }
+  .num{font-size:30px;font-weight:900;color:var(--go);display:block;margin:4px 0 2px}
+
+  /* ── sections ── */
+  section{padding:60px 0}
+  .eyebrow{
+    font-size:11px;font-weight:800;letter-spacing:1.4px;text-transform:uppercase;
+    color:var(--ac);margin-bottom:12px;
+  }
+  h2{font-size:27px;font-weight:900;letter-spacing:-.8px;margin-bottom:14px;line-height:1.2}
+  .body{color:var(--t2);font-size:15.5px}
+  .body + .body{margin-top:13px}
+  .body b{color:var(--tx);font-weight:700}
+
+  .cards{display:grid;gap:12px;margin-top:26px}
+  .card{
+    background:var(--sf);border:1px solid var(--bd);border-radius:18px;padding:20px;
+    transition:border-color .18s,transform .18s;
+  }
+  .card:hover{border-color:rgba(255,107,74,.4);transform:translateY(-2px)}
+  .card .ico{font-size:24px;margin-bottom:11px;display:block}
+  .card h3{font-size:16px;font-weight:800;margin-bottom:6px}
+  .card p{font-size:13.5px;color:var(--t3);line-height:1.55}
+
+  .quote{
+    border-left:3px solid var(--ac);padding:4px 0 4px 18px;margin:26px 0;
+    font-size:17px;line-height:1.5;color:var(--tx);font-weight:600;
+  }
+
+  .facts{display:grid;gap:1px;background:var(--bd);border-radius:16px;overflow:hidden;margin-top:24px}
+  .fact{background:var(--sf);padding:16px 18px;display:flex;gap:13px;align-items:flex-start}
+  .fact span:first-child{font-size:17px;line-height:1.3}
+  .fact b{display:block;font-size:14px;margin-bottom:2px}
+  .fact p{font-size:13px;color:var(--t3);line-height:1.5}
+
+  footer{
+    border-top:1px solid var(--bd);padding:34px 0 46px;text-align:center;
+    font-size:12.5px;color:var(--t3);
+  }
+  footer a{color:var(--t2);text-decoration:none;margin:0 9px}
+  footer a:hover{color:var(--ac)}
+  .foot-mark{
+    width:34px;height:34px;border-radius:11px;margin:0 auto 14px;
+    background:linear-gradient(135deg,var(--ac),var(--go));
+    display:flex;align-items:center;justify-content:center;
+    font-size:15px;font-weight:900;color:var(--on-ac);
+  }
+  @media(max-width:430px){
+    .row{flex-direction:column}
+    button{width:100%}
+  }
 </style>
 </head>
 <body>
-<main>
-  <div class="mark">P</div>
-  <h1>PEPLR</h1>
-  <p class="sub">Community app for Miami. Legal documents below.</p>
 
-  <a class="card" href="privacy.html">
-    <strong>Privacy Policy</strong>
-    <span>What we collect, what we never do, and how to delete everything</span>
-  </a>
+<header>
+  <div class="glow"></div>
+  <div class="wrap">
+    <div class="mark">P</div>
+    <h1>Miami, but you<br><em>actually go out</em></h1>
+    <p class="lede">
+      Everyone says "we should link up." Almost nobody does.
+      PEPLR is the app that makes it happen.
+    </p>
 
-  <a class="card" href="terms.html">
-    <strong>Terms of Service</strong>
-    <span>The agreement between you and PEPLR</span>
-  </a>
+    <div class="seats" id="seats">
+      <span class="pulse"></span>
+      <span id="seatsTx">First 25 people get beta access</span>
+    </div>
 
-  <footer>
-    Questions: <a href="mailto:privacy@peplr.app">privacy@peplr.app</a><br>
-    Safety: <a href="mailto:safety@peplr.app">safety@peplr.app</a><br><br>
-    &copy; 2026 Mayron Leon Taylor III &middot; Miami, Florida
-  </footer>
-</main>
+    <form class="signup" id="form">
+      <div class="row">
+        <input type="email" id="email" placeholder="you@email.com"
+               autocomplete="email" required aria-label="Email address">
+        <button type="submit" id="btn">Get access</button>
+      </div>
+      <p class="fine">No spam. One email when your spot opens. Unsubscribe any time.</p>
+    </form>
+
+    <div class="result" id="result" role="status" aria-live="polite"></div>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <p class="eyebrow">The problem</p>
+    <h2>Making plans as an adult is exhausting</h2>
+    <p class="body">
+      Six people, one group chat, four days of "what works for you?" — and then
+      nobody goes. Meanwhile there are people ten minutes away doing exactly the
+      thing you wanted to do.
+    </p>
+    <p class="quote">
+      The problem was never a lack of things to do. It's that nothing repeats,
+      so every plan starts from zero.
+    </p>
+    <p class="body">
+      PEPLR fixes the repeating part. <b>Standing plans</b> happen on the same day
+      every week whether or not you RSVP. No headcount, no guilt, no group chat.
+      Show up when you can. Skip when you can't. It's still there next week.
+    </p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="eyebrow">What's inside</p>
+    <h2>Four ways to end up somewhere</h2>
+
+    <div class="cards">
+      <div class="card">
+        <span class="ico">🔁</span>
+        <h3>Standing Plans</h3>
+        <p>Thursday coffee. Sunday hoops. Same time every week, run by someone
+           who actually shows up. Follow it once and it's on your list forever.</p>
+      </div>
+      <div class="card">
+        <span class="ico">🤝</span>
+        <h3>Link Ups</h3>
+        <p>One-off plans you ask to join. The host approves every guest
+           personally — you always know who said yes to you.</p>
+      </div>
+      <div class="card">
+        <span class="ico">📣</span>
+        <h3>Buzz</h3>
+        <p>What's happening right now, and only right now. New truck on Collins.
+           I-95 backed up. Posts expire on their own, so it's never stale.</p>
+      </div>
+      <div class="card">
+        <span class="ico">🎟️</span>
+        <h3>Events</h3>
+        <p>The stuff worth leaving the house for, posted by people who are going,
+           not by an algorithm selling you tickets.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="eyebrow">How it's different</p>
+    <h2>No photos. No swiping. No ads.</h2>
+    <p class="body">
+      PEPLR has <b>no profile pictures</b>. Your identity is a coloured mark and a
+      record of what you've turned up to. You're known here for showing up, not
+      for how you look — which changes who joins and how people behave.
+    </p>
+
+    <div class="facts">
+      <div class="fact">
+        <span>🚫</span>
+        <span><b>Not a dating app</b>
+        <p>No matching, no swiping, no DMs from strangers. You can only message
+           people you've joined something with.</p></span>
+      </div>
+      <div class="fact">
+        <span>📍</span>
+        <span><b>Nobody's location is ever shown</b>
+        <p>Every place in PEPLR is a public venue somebody typed in. We never
+           store your coordinates.</p></span>
+      </div>
+      <div class="fact">
+        <span>🔒</span>
+        <span><b>No ads, no data selling</b>
+        <p>No tracking, no advertising SDKs, no cookies. Your data isn't the product.</p></span>
+      </div>
+      <div class="fact">
+        <span>🛡️</span>
+        <span><b>Report and block on everything</b>
+        <p>PEPLR doesn't vet or background-check anyone, and says so plainly.
+           You decide who you meet.</p></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap" style="text-align:center">
+    <p class="eyebrow">Starting in Miami</p>
+    <h2>One city at a time, on purpose</h2>
+    <p class="body" style="max-width:470px;margin:0 auto">
+      An app like this is worthless spread thin across fifty cities and genuinely
+      useful when it's dense in one. So it's Miami first — and the first 25 people
+      get in before anyone else.
+    </p>
+
+    <form class="signup" id="form2" style="margin-top:30px">
+      <div class="row">
+        <input type="email" id="email2" placeholder="you@email.com"
+               autocomplete="email" required aria-label="Email address">
+        <button type="submit" id="btn2">Join the waitlist</button>
+      </div>
+      <p class="fine">We'll email you the moment your spot is ready.</p>
+    </form>
+    <div class="result" id="result2" role="status" aria-live="polite"></div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-mark">P</div>
+    <p style="margin-bottom:12px">PEPLR · Miami, Florida</p>
+    <p style="margin-bottom:14px">
+      <a href="privacy.html">Privacy</a>·<a href="terms.html">Terms</a>·<a href="mailto:hello@peplr.app">Contact</a>
+    </p>
+    <p style="font-size:11.5px">© 2026 Mayron Leon Taylor III. Built in Miami.</p>
+  </div>
+</footer>
+
+<script>
+  // The publishable key is designed to be public. The waitlist table has RLS
+  // on with zero policies, so this key cannot read a single email — the only
+  // thing it can do is call join_waitlist, which returns your own position
+  // and nothing else.
+  const SB_URL = 'https://kgtpnwoezfwwosrvfbzp.supabase.co';
+  const SB_KEY = 'sb_publishable_yj7iVolfVnpBTWy0i7GWmw_B5nnM_d2';
+
+  async function rpc(fn, body) {
+    const r = await fetch(`${SB_URL}/rest/v1/rpc/${fn}`, {
+      method: 'POST',
+      headers: {
+        'apikey': SB_KEY,
+        'Authorization': `Bearer ${SB_KEY}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(body || {}),
+    });
+    if (!r.ok) throw new Error('request failed');
+    return r.json();
+  }
+
+  // Live seat counter
+  (async () => {
+    try {
+      const s = await rpc('waitlist_seats');
+      const el = document.getElementById('seatsTx');
+      if (s && typeof s.left === 'number') {
+        el.textContent = s.left > 0
+          ? `${s.left} of 25 beta spots left`
+          : `Beta is full — join the waitlist`;
+      }
+    } catch (_) { /* leave the default copy */ }
+  })();
+
+  function wire(formId, inputId, btnId, resultId) {
+    const form = document.getElementById(formId);
+    const input = document.getElementById(inputId);
+    const btn = document.getElementById(btnId);
+    const out = document.getElementById(resultId);
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = input.value.trim();
+      if (!email) return;
+
+      btn.disabled = true;
+      const label = btn.textContent;
+      btn.textContent = 'Adding…';
+
+      try {
+        const res = await rpc('join_waitlist', { p_email: email, p_source: 'site' });
+
+        if (!res || !res.ok) {
+          out.className = 'result show err';
+          out.innerHTML = `<h3>That email doesn't look right</h3>
+            <p>Give it another go — we only need a working address.</p>`;
+        } else if (res.beta) {
+          out.className = 'result show win';
+          out.innerHTML = `
+            <span class="badge">You're in</span>
+            <h3>Beta spot #${res.position} is yours</h3>
+            <p>${res.returning ? "You were already on the list — same spot." :
+                 "You're one of the first 25."}
+               Watch for an email from <b>hello@peplr.app</b> with your TestFlight
+               invite. Check spam if it's quiet.</p>`;
+          form.style.display = 'none';
+        } else {
+          out.className = 'result show';
+          out.innerHTML = `
+            <h3>You're on the list</h3>
+            <span class="num">#${res.position}</span>
+            <p>${res.returning ? "Already saved — this is your spot." :
+                 "Beta's full for now."}
+               We're opening it up city by city and you'll get an email the
+               moment your spot is ready.</p>`;
+          form.style.display = 'none';
+        }
+        input.value = '';
+      } catch (_) {
+        out.className = 'result show err';
+        out.innerHTML = `<h3>Couldn't reach the server</h3>
+          <p>Check your connection and try again, or email
+             <a href="mailto:hello@peplr.app" style="color:var(--ac)">hello@peplr.app</a>.</p>`;
+      } finally {
+        btn.disabled = false;
+        btn.textContent = label;
+      }
+    });
+  }
+
+  wire('form', 'email', 'btn', 'result');
+  wire('form2', 'email2', 'btn2', 'result2');
+</script>
+
 </body>
 </html>
